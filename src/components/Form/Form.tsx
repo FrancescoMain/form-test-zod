@@ -1,4 +1,3 @@
-import { useState } from "react";
 import UiHeader from "../Ui/UiHeader/UiHeader";
 import UiInput from "../Ui/UiInput/UiInput";
 import UiTextArea from "../Ui/UiTextArea/UiTextArea";
@@ -9,25 +8,17 @@ import UiFile from "../Ui/UiFiles/UiFile";
 import { selectValues } from "../Ui/UiSelect/lib";
 import { uiGroupCheckBoxValues } from "../Ui/UiCheckbox/lib";
 import { uiGroupRadioValues } from "../Ui/UiRadio/lib";
+import { UiButton } from "../Ui/UiButton/UiButton";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { FormType } from "./type";
 
 const Form = () => {
+  const { register, handleSubmit } = useForm<FormType>();
+  const onSubmit: SubmitHandler<FormType> = (data) => console.log(data);
+
   const defaultValue = selectValues.find((item) => item.default)
     ? selectValues.find((item) => item.default)?.id!
     : 0;
-
-  const [form, setForm] = useState<FormType>({
-    firstName: "",
-    lastName: "",
-    description: "",
-    country: defaultValue,
-    notificationType: [] as number[],
-    notficationPush: 0,
-    files: null,
-  });
-  const handleAddFile = (files: FileList) => {
-    setForm({ ...form, files: files });
-  };
 
   return (
     <>
@@ -36,59 +27,33 @@ const Form = () => {
           Form
         </h3>
       </div>
-      <form className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <UiHeader title="Profilo" subtitle="Queste info sasasa" />
 
         <div className="mt-4 py-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
           <UiInput
+            register={register("firstName")}
             label="First Name"
             id="firstName"
-            value={form.firstName}
-            onChange={(e) => {
-              const val = e.target.value;
-              setForm({
-                ...form,
-                firstName: val,
-              });
-            }}
           />
           <UiInput
+            register={register("lastName")}
             label="Last Name"
             id="lastName"
-            value={form.lastName}
-            onChange={(e) => {
-              const val = e.target.value;
-              setForm({
-                ...form,
-                lastName: val,
-              });
-            }}
+            {...register("lastName")}
           />
           <UiTextArea
+            register={register("description")}
             label="Description"
             id="description"
-            value={form.description}
             subtitle="Scrivi Alcune frasi su di te..."
-            onChange={(e) => {
-              const val = e.target.value;
-              setForm({
-                ...form,
-                description: val,
-              });
-            }}
           />
           <UiSelect
+            register={register("country")}
             defaultValue={defaultValue}
             label="Country"
             id="country"
             values={selectValues}
-            onChange={(e) => {
-              const val = e.target.value;
-              setForm({
-                ...form,
-                country: Number(val),
-              });
-            }}
           />
         </div>
 
@@ -96,39 +61,37 @@ const Form = () => {
 
         <div className="mt-4 py-4">
           <UiGroupCheckbox
+            register={register("notificationType")}
             title="By Email"
             values={uiGroupCheckBoxValues}
-            onChange={(selected) => {
-              setForm({
-                ...form,
-                notificationType: selected,
-              });
-            }}
           />
           <UiGroupRadio
+            register={register("notficationPush")}
             name="Push-notification"
             title="Push Notification"
             values={uiGroupRadioValues}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              const val = event.target.value;
-              setForm({
-                ...form,
-                notficationPush: Number(val),
-              });
-            }}
           />
-          <UiFile
-            form={form}
-            id="myfile"
-            onAddFile={(files) => handleAddFile(files)}
-          />
+          <UiFile register={register("files")} label="Photo" id="myfile" />
+        </div>
+        <div className="pt-5">
+          <div className="flex justify-end">
+            <UiButton
+              title="Canell"
+              solid
+              onClick={() => {
+                alert("Cancell");
+              }}
+            />
+            <UiButton
+              title="Save"
+              onClick={() => {
+                alert("Save");
+              }}
+            />
+          </div>
+          <button type="submit">INVIA</button>
         </div>
       </form>
-      <div className="my-4 bg-blue-800 text-white font-bold text-sm p-4 rounded-md shadow-md">
-        <pre>
-          <code>{JSON.stringify(form, undefined, 2)}</code>
-        </pre>
-      </div>
     </>
   );
 };

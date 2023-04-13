@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UiCheckbox from "./UiCheckbox";
 import { GroupCheckboxProps } from "./type";
 
 export const UiGroupCheckbox = ({
   values,
-  onChange,
   title,
+  register,
 }: GroupCheckboxProps) => {
   const [selected, setSelected] = useState([] as number[]);
-
-  useEffect(() => {
-    onChange(selected);
-  }, [selected]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val = Number(event.target.value);
@@ -37,6 +33,7 @@ export const UiGroupCheckbox = ({
                 description={checkBox.description}
                 value={checkBox.value}
                 onChange={handleChange}
+                register={register}
               />
             );
           })}

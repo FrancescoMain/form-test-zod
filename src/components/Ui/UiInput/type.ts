@@ -1,8 +1,9 @@
-import { ChangeEventHandler } from "react";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
+import { FormType } from "../../Form/type";
 
 export interface UiInputProps {
     label: string;
     id: string;
-    value: string;
-    onChange: ChangeEventHandler<HTMLInputElement>;
+    register: UseFormRegisterReturn<string>
+
 }

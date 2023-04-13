@@ -1,7 +1,7 @@
 import UiRadio from "./UiRadio";
 import { UiGroupRadioProps } from "./type";
 
-const UiGroupRadio = ({ values, onChange, title, name }: UiGroupRadioProps) => {
+const UiGroupRadio = ({ values, title, name, register }: UiGroupRadioProps) => {
   return (
     <div className="mb-4">
       <fieldset>
@@ -15,8 +15,8 @@ const UiGroupRadio = ({ values, onChange, title, name }: UiGroupRadioProps) => {
                 label={radio.label}
                 description={radio.description}
                 value={radio.value}
-                onChange={onChange}
                 name={name}
+                register={register}
               />
             );
           })}

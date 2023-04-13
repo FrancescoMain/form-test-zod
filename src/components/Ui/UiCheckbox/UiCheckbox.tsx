@@ -4,19 +4,18 @@ const UiCheckbox = ({
   label,
   id,
   value,
-  onChange,
   description,
+  register,
 }: CheckboxProps) => {
   return (
     <div className="relative flex items-start">
       <div className="flex items-center h-5">
         <input
           id={id}
-          name={id}
           type="checkbox"
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
           value={value}
-          onChange={onChange}
+          {...register}
         />
       </div>
       <div className="ml-3 text-sm">

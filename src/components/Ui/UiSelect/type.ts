@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface selectValue {
     id: number;
@@ -10,6 +11,7 @@ export  interface UiSelectProps {
     label: string;
     id: string;
     values: selectValue[];
-    onChange: ChangeEventHandler<HTMLSelectElement>;
     defaultValue: number;
+    register: UseFormRegisterReturn<string>
+
 }

@@ -1,16 +1,15 @@
-import { FormType } from "../../Form/type";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface PropsUiFile {
     id: string;
-    onAddFile: (files: FileList) => void;
-    form: FormType
-}
+    label: string;
+    register: UseFormRegisterReturn<string>
 
-export interface UiListFilesProps {
-  files: FileList | null
+    
 }
 
 export interface UiSelectFileProps {
   id: string;
-  onAddFile: (files: FileList) => void;
+  register: UseFormRegisterReturn<string>
+
 }

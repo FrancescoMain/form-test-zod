@@ -1,11 +1,16 @@
-import { UiListFilesProps } from "./type";
-
-const UiListFiles = ({ files }: UiListFilesProps) => {
+const UiListFiles = () => {
   return (
     <div>
-      {files && files.length > 0 && (
-        <ul className="list-disc font-bold">{files.length}</ul>
-      )}
+      <ul className="list-disc font-bold">
+        <li className="items-center text-xs align-middle inline-flex gap-4">
+          <button
+            type="button"
+            className="p-1 bg-indigo-500 text-white rounded-md"
+          >
+            Remove
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };

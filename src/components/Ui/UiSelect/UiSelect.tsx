@@ -4,7 +4,7 @@ const UiSelect = ({
   label,
   id,
   values,
-  onChange,
+  register,
   defaultValue,
 }: UiSelectProps) => {
   return (
@@ -13,12 +13,7 @@ const UiSelect = ({
         {label}
       </label>
       <div>
-        <select
-          name={id}
-          id={id}
-          onChange={onChange}
-          defaultValue={defaultValue}
-        >
+        <select {...register} name={id} id={id} defaultValue={defaultValue}>
           {values.map((value) => {
             return (
               <option key={value.id} value={value.id}>

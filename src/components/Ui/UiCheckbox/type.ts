@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface CheckboxProps {
     label: string;
@@ -6,6 +7,10 @@ export interface CheckboxProps {
     value: number;
     onChange: ChangeEventHandler<HTMLInputElement>;
     description: string;
+    register: UseFormRegisterReturn<string>
+
+
+
   }
 
   export interface uiGroupCheckboxValue {
@@ -16,7 +21,10 @@ export interface CheckboxProps {
   }
   
   export interface GroupCheckboxProps {
-    onChange: (selected: number[]) => void;
     values: uiGroupCheckboxValue[];
     title: string;
+    register: UseFormRegisterReturn<string>
+
+
+
   }

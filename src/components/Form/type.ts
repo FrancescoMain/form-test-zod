@@ -5,5 +5,7 @@ export interface FormType {
     country: number;
     notificationType: number[];
     notficationPush: number;
-    files: FileList | null;
+    files: string[];
   }
+
+  
