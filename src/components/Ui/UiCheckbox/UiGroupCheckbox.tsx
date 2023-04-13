@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
 import UiCheckbox from "./UiCheckbox";
+import { GroupCheckboxProps } from "./type";
 
-export interface uiGroupCheckboxValue {
-  id: string;
-  label: string;
-  value: number;
-  description: string;
-}
-
-interface Props {
-  onChange: (selected: number[]) => void;
-  values: uiGroupCheckboxValue[];
-  title: string;
-}
-
-export const UiGroupCheckbox = ({ values, onChange, title }: Props) => {
+export const UiGroupCheckbox = ({
+  values,
+  onChange,
+  title,
+}: GroupCheckboxProps) => {
   const [selected, setSelected] = useState([] as number[]);
 
   useEffect(() => {
     onChange(selected);
-  }, [selected, onChange]);
+  }, [selected]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val = Number(event.target.value);

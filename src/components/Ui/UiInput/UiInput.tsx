@@ -1,13 +1,6 @@
-import { ChangeEventHandler } from "react";
+import { UiInputProps } from "./type";
 
-interface Props {
-  label: string;
-  id: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-}
-
-const UiInput = ({ label, id, value, onChange }: Props) => {
+const UiInput = ({ label, id, value, onChange }: UiInputProps) => {
   return (
     <div className="col-span-3">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">

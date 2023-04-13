@@ -1,15 +1,13 @@
-import { ChangeEventHandler } from "react";
+import { UiRadioProps } from "./type";
 
-interface Props {
-  label: string;
-  id: string;
-  value: number;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  description: string;
-  name: string;
-}
-
-const UiRadio = ({ label, id, value, onChange, description, name }: Props) => {
+const UiRadio = ({
+  label,
+  id,
+  value,
+  onChange,
+  description,
+  name,
+}: UiRadioProps) => {
   return (
     <div className="relative flex items-start">
       <div className="flex items-center h-5">

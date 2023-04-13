@@ -1,14 +1,12 @@
-import { ChangeEventHandler } from "react";
+import { CheckboxProps } from "./type";
 
-interface Props {
-  label: string;
-  id: string;
-  value: number;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  description: string;
-}
-
-const UiCheckbox = ({ label, id, value, onChange, description }: Props) => {
+const UiCheckbox = ({
+  label,
+  id,
+  value,
+  onChange,
+  description,
+}: CheckboxProps) => {
   return (
     <div className="relative flex items-start">
       <div className="flex items-center h-5">

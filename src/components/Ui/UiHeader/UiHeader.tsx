@@ -1,9 +1,6 @@
-interface Props {
-  title: string;
-  subtitle: string;
-}
+import { UiHeaderProps } from "./type";
 
-const UiHeader = ({ title, subtitle }: Props) => {
+const UiHeader = ({ title, subtitle }: UiHeaderProps) => {
   return (
     <div className="space-y-8 py-8 border-b border-gray-300">
       <div>

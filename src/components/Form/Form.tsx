@@ -1,72 +1,33 @@
 import { useState } from "react";
-import UiHeader from "./ui/UiHeader";
-import UiInput from "./ui/UiInput";
-import UiTextArea from "./ui/UiTextArea";
-import UiSelect, { selectValue } from "./ui/UiSelect";
-import { UiGroupCheckbox } from "./ui/UiGroupCheckbox";
-import UiGroupRadio from "./ui/UiGroupRadio";
-
-const selectValues: selectValue[] = [
-  { id: 1, name: "Italia" },
-  { id: 2, name: "Francia", default: true },
-  { id: 3, name: "Germania" },
-];
-
-const uiGroupCheckBoxValues = [
-  {
-    id: "comments",
-    label: "Comments",
-    value: 1,
-    description: "Get notified when someones posts a comment on a posting.",
-  },
-  {
-    id: "candidates",
-    label: "Candidates",
-    value: 2,
-    description: "Get notified when a candidate applies for a job.",
-  },
-  {
-    id: "offers",
-    label: "Offers",
-    value: 3,
-    description: "Get notified when a candidate accepts or rejects an offer.",
-  },
-];
-
-const uiGroupRadioValues = [
-  {
-    label: "Everything",
-    id: "everything",
-    value: 1,
-    description: "Get notified when someones posts a comment on a posting.",
-  },
-  {
-    label: "Same as email",
-    id: "same",
-    value: 2,
-    description: "Get notified when a candidate applies for a job.",
-  },
-  {
-    label: " No push notifications",
-    id: "np-push",
-    value: 3,
-    description: "Get notified when a candidate accepts or rejects an offer.",
-  },
-];
+import UiHeader from "../Ui/UiHeader/UiHeader";
+import UiInput from "../Ui/UiInput/UiInput";
+import UiTextArea from "../Ui/UiTextArea/UiTextArea";
+import UiSelect from "../Ui/UiSelect/UiSelect";
+import { UiGroupCheckbox } from "../Ui/UiCheckbox/UiGroupCheckbox";
+import UiGroupRadio from "../Ui/UiRadio/UiGroupRadio";
+import UiFile from "../Ui/UiFiles/UiFile";
+import { selectValues } from "../Ui/UiSelect/lib";
+import { uiGroupCheckBoxValues } from "../Ui/UiCheckbox/lib";
+import { uiGroupRadioValues } from "../Ui/UiRadio/lib";
+import { FormType } from "./type";
 
 const Form = () => {
   const defaultValue = selectValues.find((item) => item.default)
     ? selectValues.find((item) => item.default)?.id!
     : 0;
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormType>({
     firstName: "",
     lastName: "",
     description: "",
     country: defaultValue,
     notificationType: [] as number[],
     notficationPush: 0,
+    files: null,
   });
+  const handleAddFile = (files: FileList) => {
+    setForm({ ...form, files: files });
+  };
 
   return (
     <>
@@ -155,6 +116,11 @@ const Form = () => {
                 notficationPush: Number(val),
               });
             }}
+          />
+          <UiFile
+            form={form}
+            id="myfile"
+            onAddFile={(files) => handleAddFile(files)}
           />
         </div>
       </form>

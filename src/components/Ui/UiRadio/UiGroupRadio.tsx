@@ -1,20 +1,7 @@
 import UiRadio from "./UiRadio";
+import { UiGroupRadioProps } from "./type";
 
-export interface uiGroupCheckboxValue {
-  id: string;
-  label: string;
-  value: number;
-  description: string;
-}
-
-interface Props {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  values: uiGroupCheckboxValue[];
-  title: string;
-  name: string;
-}
-
-const UiGroupRadio = ({ values, onChange, title, name }: Props) => {
+const UiGroupRadio = ({ values, onChange, title, name }: UiGroupRadioProps) => {
   return (
     <div className="mb-4">
       <fieldset>

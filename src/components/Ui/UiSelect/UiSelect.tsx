@@ -1,20 +1,12 @@
-import { ChangeEventHandler } from "react";
+import { UiSelectProps } from "./type";
 
-export interface selectValue {
-  id: number;
-  name: string;
-  default?: boolean;
-}
-
-interface Props {
-  label: string;
-  id: string;
-  values: selectValue[];
-  onChange: ChangeEventHandler<HTMLSelectElement>;
-  defaultValue: number;
-}
-
-const UiSelect = ({ label, id, values, onChange, defaultValue }: Props) => {
+const UiSelect = ({
+  label,
+  id,
+  values,
+  onChange,
+  defaultValue,
+}: UiSelectProps) => {
   return (
     <div className="col-span-3">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">

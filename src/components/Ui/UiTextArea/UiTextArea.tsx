@@ -1,14 +1,12 @@
-import { ChangeEventHandler } from "react";
+import { UiTextAreaProps } from "./type";
 
-interface Props {
-  label: string;
-  id: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
-  subtitle: string;
-}
-
-const UiTextArea = ({ label, id, value, onChange, subtitle }: Props) => {
+const UiTextArea = ({
+  label,
+  id,
+  value,
+  onChange,
+  subtitle,
+}: UiTextAreaProps) => {
   return (
     <div className="col-span-3">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
